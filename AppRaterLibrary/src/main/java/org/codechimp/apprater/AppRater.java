@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+@SuppressWarnings("WeakerAccess")
 public class AppRater {
     // Preference Constants
     private final static String PREF_NAME = "apprater";
@@ -168,7 +169,7 @@ public class AppRater {
         long launch_count = prefs.getLong(PREF_LAUNCH_COUNT, 0) + 1;
         editor.putLong(PREF_LAUNCH_COUNT, launch_count);
         // Get date of first launch
-        Long date_firstLaunch = prefs.getLong(PREF_FIRST_LAUNCHED, 0);
+        long date_firstLaunch = prefs.getLong(PREF_FIRST_LAUNCHED, 0);
         if (date_firstLaunch == 0) {
             date_firstLaunch = System.currentTimeMillis();
             editor.putLong(PREF_FIRST_LAUNCHED, date_firstLaunch);
@@ -278,7 +279,7 @@ public class AppRater {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (editor != null) {
-                            Long date_firstLaunch = System.currentTimeMillis();
+                            long date_firstLaunch = System.currentTimeMillis();
                             editor.putLong(PREF_FIRST_LAUNCHED, date_firstLaunch);
                             editor.putLong(PREF_LAUNCH_COUNT, 0);
                             editor.putBoolean(PREF_REMIND_LATER, true);

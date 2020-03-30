@@ -5,15 +5,15 @@ import android.net.Uri;
 
 public abstract class Market {
 
-    protected static String packageName;
+    private static String packageName;
 
     protected abstract Uri getMarketURI(Context context);
 
-    public void overridePackageName(String packageName) {
+    void overridePackageName(String packageName) {
         Market.packageName = packageName;
     }
 
-    protected static String getPackageName(Context context) {
+    static String getPackageName(Context context) {
         if (Market.packageName != null) {
             return Market.packageName;
         }
