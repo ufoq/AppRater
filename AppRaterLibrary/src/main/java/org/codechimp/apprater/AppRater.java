@@ -30,8 +30,6 @@ public class AppRater {
     private final static int LAUNCHES_UNTIL_PROMPT = 7;
     private static int DAYS_UNTIL_PROMPT_FOR_REMIND_LATER = 3;
     private static int LAUNCHES_UNTIL_PROMPT_FOR_REMIND_LATER = 7;
-    private static boolean isDark;
-    private static boolean themeSet;
     private static boolean hideNoButton;
     private static boolean isVersionNameCheckEnabled;
     private static boolean isVersionCodeCheckEnabled;
@@ -228,34 +226,11 @@ public class AppRater {
     }
 
     /**
-     * Sets dialog theme to dark
-     */
-    @TargetApi(11)
-    public static void setDarkTheme() {
-        isDark = true;
-        themeSet = true;
-    }
-
-    /**
-     * Sets dialog theme to light
-     */
-    @TargetApi(11)
-    public static void setLightTheme() {
-        isDark = false;
-        themeSet = true;
-    }
-
-    /**
      * The meat of the library, actually shows the rate prompt dialog
      */
     @SuppressLint("NewApi")
     private static void showRateAlertDialog(final Context context, final SharedPreferences.Editor editor) {
-        Builder builder;
-        if (Build.VERSION.SDK_INT >= 11 && themeSet) {
-            builder = new AlertDialog.Builder(context, (isDark ? AlertDialog.THEME_HOLO_DARK : AlertDialog.THEME_HOLO_LIGHT));
-        } else {
-            builder = new AlertDialog.Builder(context);
-        }
+        Builder builder = new AlertDialog.Builder(context);
         ApplicationRatingInfo ratingInfo = ApplicationRatingInfo.createApplicationInfo(context);
         builder.setTitle(String.format(context.getString(R.string.apprater_dialog_title), ratingInfo.getApplicationName()));
 
