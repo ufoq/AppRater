@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    compile project(':AppRaterLibrary')
+    implementation project(':AppRaterLibrary')
 }
 
 
